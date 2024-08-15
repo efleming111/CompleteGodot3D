@@ -12,7 +12,7 @@ config_version=5
 
 config/name="CompleteGodot3D"
 run/main_scene="res://LearningGodot/level.tscn"
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://Icons/icon.svg"
 
 [dotnet]
