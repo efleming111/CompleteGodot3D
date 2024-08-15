@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5aubdsix821o"]
+
+[ext_resource type="PackedScene" uid="uid://fjw3hqxpgh5a" path="res://LearningGodot/box_capsule_meshes.tscn" id="1_6iggn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_84qfm"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_jf0lg"]
+sky_material = SubResource("ProceduralSkyMaterial_84qfm")
+
+[sub_resource type="Environment" id="Environment_5h7mx"]
+background_mode = 2
+sky = SubResource("Sky_jf0lg")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Level" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5h7mx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.0523359, -0.258464, 0.964602, 0, 0.965926, 0.258819, -0.99863, 0.0135455, -0.0505526, 8.985, 2.455, -0.067)
+
+[node name="BoxCapsuleMeshes" parent="." instance=ExtResource("1_6iggn")]
+
+[node name="BoxCapsuleMeshes2" parent="." instance=ExtResource("1_6iggn")]
+transform = Transform3D(-0.197933, -0.459154, 0, 0.459154, -0.197933, 0, 0, 0, 0.5, 0.53889, 0, 3.09155)
+
+[node name="BoxCapsuleMeshes3" parent="." instance=ExtResource("1_6iggn")]
+transform = Transform3D(0.310825, 2.98385, 0, -2.98385, 0.310825, 0, 0, 0, 3, 0, 0, 1.96846)
