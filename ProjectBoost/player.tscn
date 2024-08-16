@@ -10,6 +10,8 @@
 axis_lock_linear_z = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
+contact_monitor = true
+max_contacts_reported = 10
 linear_damp = 1.0
 angular_damp = 3.0
 script = ExtResource("1_77rui")
@@ -19,3 +21,5 @@ shape = SubResource("CylinderShape3D_hlmt3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CylinderMesh_3lvls")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://ch2j5s5o3qbj4"]
+[gd_scene load_steps=10 format=3 uid="uid://buftee4yhkoru"]
 
-[ext_resource type="PackedScene" uid="uid://dku18iutywovi" path="res://ProjectBoost/player.tscn" id="1_js1fd"]
-[ext_resource type="Script" path="res://ProjectBoost/Scripts/LandingPad.cs" id="1_wdh3n"]
+[ext_resource type="Script" path="res://ProjectBoost/Scripts/LandingPad.cs" id="1_0p08r"]
+[ext_resource type="PackedScene" uid="uid://dku18iutywovi" path="res://ProjectBoost/player.tscn" id="2_p7arj"]
+[ext_resource type="Material" uid="uid://c3vtoelfaxbwa" path="res://ProjectBoost/Materials/ObstaclePurple.tres" id="3_4cukl"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0g3rq"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -54,8 +55,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
 use_collision = true
 size = Vector3(4, 0.4, 4)
 material = SubResource("StandardMaterial3D_6s3mt")
-script = ExtResource("1_wdh3n")
-filePath = "res://ProjectBoost/Levels/level_2.tscn"
+script = ExtResource("1_0p08r")
+filePath = "res://ProjectBoost/Levels/level_1.tscn"
 
-[node name="Player" parent="." instance=ExtResource("1_js1fd")]
+[node name="Player" parent="." instance=ExtResource("2_p7arj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.76334, 0)
+
+[node name="Obstacle1" type="CSGBox3D" parent="." groups=["Obstacle"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+use_collision = true
+size = Vector3(40, 1, 4)
+material = ExtResource("3_4cukl")
