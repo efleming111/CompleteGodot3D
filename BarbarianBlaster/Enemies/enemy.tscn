@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://shy3qr84p21m"]
+
+[ext_resource type="Script" path="res://BarbarianBlaster/Scripts/Enemy.cs" id="1_q4c1x"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4u0ln"]
+radius = 1.0
+height = 3.0
+
+[node name="Enemy" type="PathFollow3D"]
+transform = Transform3D(0.999983, 0, 0, 0, 1, 0, 0, 0, 0.999983, 0, 0, 0)
+loop = false
+script = ExtResource("1_q4c1x")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+mesh = SubResource("CapsuleMesh_4u0ln")

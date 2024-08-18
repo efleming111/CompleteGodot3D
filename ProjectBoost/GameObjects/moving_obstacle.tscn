@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://2xdvhaqprpt4"]
+
+[ext_resource type="Script" path="res://ProjectBoost/Scripts/MovingObstacle.cs" id="1_5cyrx"]
+[ext_resource type="Material" uid="uid://b5la24rnh8qov" path="res://ProjectBoost/Materials/MovingObstacleYellow.tres" id="1_wobqk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_74pgf"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_snuk7"]
+size = Vector3(3, 3, 3)
+
+[node name="MovingObstacle" type="AnimatableBody3D" groups=["Obstacle"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89097, 0)
+script = ExtResource("1_5cyrx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_74pgf")
+surface_material_override/0 = ExtResource("1_wobqk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_snuk7")

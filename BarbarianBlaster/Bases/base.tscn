@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://0rfs4b2nj8id"]
+
+[ext_resource type="Script" path="res://BarbarianBlaster/Scripts/Base.cs" id="1_w6xui"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xpowh"]
+albedo_color = Color(0.71, 0.0213, 0.136084, 1)
+
+[node name="Base" type="Node3D" groups=["Base"]]
+script = ExtResource("1_w6xui")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+radius = 2.0
+height = 4.0
+sides = 32
+material = SubResource("StandardMaterial3D_xpowh")

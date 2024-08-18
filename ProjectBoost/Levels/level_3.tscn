@@ -1,24 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://buftee4yhkoru"]
+[gd_scene load_steps=7 format=3 uid="uid://buftee4yhkoru"]
 
 [ext_resource type="Script" path="res://ProjectBoost/Scripts/LandingPad.cs" id="1_0p08r"]
-[ext_resource type="PackedScene" uid="uid://dku18iutywovi" path="res://ProjectBoost/player.tscn" id="2_p7arj"]
+[ext_resource type="PackedScene" uid="uid://7311qopl2ciu" path="res://ProjectBoost/Environment/Background.tscn" id="1_xk6os"]
+[ext_resource type="PackedScene" uid="uid://dku18iutywovi" path="res://ProjectBoost/GameObjects/player.tscn" id="2_p7arj"]
 [ext_resource type="Material" uid="uid://c3vtoelfaxbwa" path="res://ProjectBoost/Materials/ObstaclePurple.tres" id="3_4cukl"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_0g3rq"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_ffwu6"]
-sky_material = SubResource("ProceduralSkyMaterial_0g3rq")
-
-[sub_resource type="Environment" id="Environment_ntotf"]
-background_mode = 2
-sky = SubResource("Sky_ffwu6")
-tonemap_mode = 2
-glow_enabled = true
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7j6qt"]
-albedo_color = Color(0.891374, 0.467413, 0.266411, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wcnaq"]
 albedo_color = Color(0.714616, 0.644679, 0.985931, 1)
@@ -28,21 +13,10 @@ albedo_color = Color(0.483115, 0.75671, 0.221344, 1)
 
 [node name="Level" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_ntotf")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
-shadow_enabled = true
-
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 6, 10)
 
-[node name="Ground" type="CSGBox3D" parent="." groups=["Obstacle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
-use_collision = true
-size = Vector3(40, 8, 5)
-material = SubResource("StandardMaterial3D_7j6qt")
+[node name="Ground" parent="." instance=ExtResource("1_xk6os")]
 
 [node name="LaunchPad" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
@@ -56,13 +30,13 @@ use_collision = true
 size = Vector3(4, 0.4, 4)
 material = SubResource("StandardMaterial3D_6s3mt")
 script = ExtResource("1_0p08r")
-filePath = "res://ProjectBoost/Levels/level_1.tscn"
+filePath = "res://ProjectBoost/Levels/level_4.tscn"
 
 [node name="Player" parent="." instance=ExtResource("2_p7arj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.76334, 0)
 
 [node name="Obstacle1" type="CSGBox3D" parent="." groups=["Obstacle"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, 0)
+transform = Transform3D(0.888384, -0.450989, -0.0859307, 0.426511, 0.879996, -0.209034, 0.169891, 0.149052, 0.974126, 0.782745, 3.94339, 0)
 use_collision = true
-size = Vector3(40, 1, 4)
+size = Vector3(8.59053, 2.2168, 4)
 material = ExtResource("3_4cukl")
