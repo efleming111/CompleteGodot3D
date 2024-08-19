@@ -7,6 +7,9 @@ public partial class RayPicker : Camera3D
 	[Export]
 	private GridMap gridMap = null;
 
+	[Export]
+	private TurretManager turretManager = null;
+
 	private RayCast3D rayCast = null;
 
 	public override void _Ready()
@@ -30,10 +33,11 @@ public partial class RayPicker : Camera3D
 				if (Input.IsActionJustPressed("click"))
 				{
 					Vector3 collisionPoint = rayCast.GetCollisionPoint();
-					Vector3I localPosition =  gridMap.LocalToMap(collisionPoint);
-					if(gridMap.GetCellItem(localPosition) == 0)
+					Vector3I mapPosition =  gridMap.LocalToMap(collisionPoint);
+					if(gridMap.GetCellItem(mapPosition) == 0)
 					{
-						gridMap.SetCellItem(localPosition, 1);
+						gridMap.SetCellItem(mapPosition, 1);
+						turretManager.BuildTurret(gridMap.MapToLocal(mapPosition));
 					}
 				}
 			}

@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://dsdhipomvugu0"]
+
+[ext_resource type="Script" path="res://BarbarianBlaster/Scripts/Turret.cs" id="1_r876c"]
+[ext_resource type="PackedScene" uid="uid://cr78443cx2y6d" path="res://BarbarianBlaster/GameObjects/projectile.tscn" id="2_jgoni"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5r1xs"]
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_jd3pl"]
+top_radius = 0.6
+bottom_radius = 0.6
+height = 0.6
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6bdd1"]
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_478fa"]
+bottom_radius = 0.3
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_o520v"]
+height = 0.75
+
+[sub_resource type="SphereMesh" id="SphereMesh_ffqcf"]
+
+[node name="Turret" type="Node3D"]
+script = ExtResource("1_r876c")
+projectile = ExtResource("2_jgoni")
+
+[node name="TurretBase" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CylinderMesh_5r1xs")
+
+[node name="TurretTop" type="MeshInstance3D" parent="TurretBase"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("CylinderMesh_jd3pl")
+
+[node name="BarrelMount" type="MeshInstance3D" parent="TurretBase/TurretTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.232681, 0)
+mesh = SubResource("CapsuleMesh_6bdd1")
+
+[node name="BarrelAssembly" type="Node3D" parent="TurretBase/TurretTop"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05527, 0)
+
+[node name="BarrelTip" type="MeshInstance3D" parent="TurretBase/TurretTop/BarrelAssembly"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0.875)
+mesh = SubResource("CylinderMesh_478fa")
+skeleton = NodePath("../..")
+
+[node name="BarrelMiddle" type="MeshInstance3D" parent="TurretBase/TurretTop/BarrelAssembly"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_o520v")
+
+[node name="BarrelEnd" type="MeshInstance3D" parent="TurretBase/TurretTop/BarrelAssembly"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.375)
+mesh = SubResource("SphereMesh_ffqcf")
