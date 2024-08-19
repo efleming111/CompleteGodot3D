@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://7ei65g1bx4np"]
+
+[ext_resource type="Script" path="res://BarbarianBlaster/Scripts/RayPicker.cs" id="1_qnpyu"]
+
+[node name="RayPicker" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 14.5, 9.5)
+script = ExtResource("1_qnpyu")
+
+[node name="RayCast3D" type="RayCast3D" parent="."]

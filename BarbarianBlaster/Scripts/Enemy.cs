@@ -20,6 +20,7 @@ public partial class Enemy : PathFollow3D
 		if(ProgressRatio > .99f)
 		{
 			levelBase.TakeDamage();
+			SetProcess(false);
 		}
 
 	}

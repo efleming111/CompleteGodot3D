@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://vetcv2pw58wd"]
+[gd_scene load_steps=10 format=3 uid="uid://vetcv2pw58wd"]
 
+[ext_resource type="PackedScene" uid="uid://7ei65g1bx4np" path="res://BarbarianBlaster/Cameras/ray_picker.tscn" id="1_kjhaj"]
 [ext_resource type="MeshLibrary" uid="uid://d1fjml4w24bcr" path="res://BarbarianBlaster/MeshLibraries/SpaceLibrary.tres" id="1_ptvwb"]
 [ext_resource type="PackedScene" uid="uid://shy3qr84p21m" path="res://BarbarianBlaster/Enemies/enemy.tscn" id="2_r87wg"]
 [ext_resource type="PackedScene" uid="uid://0rfs4b2nj8id" path="res://BarbarianBlaster/Bases/base.tscn" id="3_a3c50"]
@@ -36,8 +37,8 @@ environment = SubResource("Environment_8nox8")
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 14.5, 9.5)
+[node name="RayPicker" parent="." node_paths=PackedStringArray("gridMap") instance=ExtResource("1_kjhaj")]
+gridMap = NodePath("../GridMap")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -94,8 +95,29 @@ path_continuous_u = true
 path_u_distance = 1.0
 path_joined = false
 
-[node name="Enemy" parent="Path3D" instance=ExtResource("2_r87wg")]
+[node name="Enemy1" parent="Path3D" instance=ExtResource("2_r87wg")]
 transform = Transform3D(-4.37106e-08, 0, -0.999983, 0, 1, 0, 0.999983, 0, -4.37106e-08, -22, 0, 6)
+walkSpeed = 10.0
+
+[node name="Enemy2" parent="Path3D" instance=ExtResource("2_r87wg")]
+transform = Transform3D(-0.0240075, 0, -0.999695, 0, 1, 0, 0.999695, 0, -0.0240075, -17.0018, 0, 6.12903)
+progress = 5.0
+walkSpeed = 10.0
+
+[node name="Enemy3" parent="Path3D" instance=ExtResource("2_r87wg")]
+transform = Transform3D(-0.0206487, 0, -0.99977, 0, 1, 0, 0.99977, 0, -0.0206487, -12.003, 0, 6.2408)
+progress = 10.0
+walkSpeed = 10.0
+
+[node name="Enemy4" parent="Path3D" instance=ExtResource("2_r87wg")]
+transform = Transform3D(-0.0166662, 0, -0.999844, 0, 1, 0, 0.999844, 0, -0.0166662, -7.00381, 0, 6.33448)
+progress = 15.0
+walkSpeed = 10.0
+
+[node name="Enemy5" parent="Path3D" instance=ExtResource("2_r87wg")]
+transform = Transform3D(-0.0112952, 0, -0.999919, 0, 1, 0, 0.999919, 0, -0.0112952, -2.00431, 0, 6.40519)
+progress = 20.0
+walkSpeed = 10.0
 
 [node name="Base" parent="." instance=ExtResource("3_a3c50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -6)
