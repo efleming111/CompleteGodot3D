@@ -125,6 +125,7 @@ walkSpeed = 10.0
 [node name="Base" parent="." instance=ExtResource("3_a3c50")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -6)
 
-[node name="TurretManager" type="Node3D" parent="."]
+[node name="TurretManager" type="Node3D" parent="." node_paths=PackedStringArray("enemyPath")]
 script = ExtResource("5_pybq1")
 turret = ExtResource("6_o7lpw")
+enemyPath = NodePath("../Path3D")
