@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class Projectile : Area3D
 {
@@ -24,5 +25,14 @@ public partial class Projectile : Area3D
     public void OnTimerTimeout()
     {
         QueueFree();
+    }
+
+    public void OnAreaEntered(Area3D area)
+    {
+        if (area.IsInGroup("EnemyArea"))
+        {
+            area.GetParent<Enemy>().TakeDamage(10.0f);
+            QueueFree();
+        }
     }
 }

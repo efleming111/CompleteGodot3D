@@ -24,6 +24,8 @@ project/assembly_name="CompleteGodot3D"
 Obstacle=""
 Goal=""
 Base="The single base in the level"
+EnemyArea="Denotes an enemy"
+Bank="Players gold amount"
 
 [input]
 

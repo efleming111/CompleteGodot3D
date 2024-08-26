@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dsdhipomvugu0"]
+[gd_scene load_steps=12 format=3 uid="uid://dsdhipomvugu0"]
 
 [ext_resource type="Script" path="res://BarbarianBlaster/Scripts/Turret.cs" id="1_r876c"]
 [ext_resource type="PackedScene" uid="uid://cr78443cx2y6d" path="res://BarbarianBlaster/GameObjects/projectile.tscn" id="2_jgoni"]
@@ -22,6 +22,34 @@ height = 1.0
 height = 0.75
 
 [sub_resource type="SphereMesh" id="SphereMesh_ffqcf"]
+
+[sub_resource type="Animation" id="Animation_55tm5"]
+resource_name = "TurretFire"
+length = 0.3
+step = 0.05
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TurretBase/TurretTop/BarrelAssembly")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.05527, 0, 0.15, 1, 0, 1.055, -0.3, 0.3, 1, 0, 1.05527, 0)
+
+[sub_resource type="Animation" id="Animation_lgvlc"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TurretBase/TurretTop/BarrelAssembly")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 1.05527, 0)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7ks6f"]
+_data = {
+"RESET": SubResource("Animation_lgvlc"),
+"TurretFire": SubResource("Animation_55tm5")
+}
 
 [node name="Turret" type="Node3D"]
 script = ExtResource("1_r876c")
@@ -60,5 +88,10 @@ mesh = SubResource("SphereMesh_ffqcf")
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_7ks6f")
+}
 
 [connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

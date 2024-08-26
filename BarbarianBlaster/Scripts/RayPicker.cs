@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Diagnostics;
+using static Godot.TabContainer;
 
 public partial class RayPicker : Camera3D
 {
@@ -11,10 +12,12 @@ public partial class RayPicker : Camera3D
 	private TurretManager turretManager = null;
 
 	private RayCast3D rayCast = null;
+	private Bank bank = null;
 
 	public override void _Ready()
 	{
 		rayCast = GetNode<RayCast3D>("RayCast3D");
+		bank = GetTree().GetFirstNodeInGroup("Bank") as Bank;
 	}
 
 	public override void _Process(double delta)
@@ -26,21 +29,29 @@ public partial class RayPicker : Camera3D
 		if (rayCast.IsColliding())
 		{
 			GodotObject collider = rayCast.GetCollider();
-			if(collider is GridMap)
+            if(collider is GridMap)
 			{
-				Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);
-
-				if (Input.IsActionJustPressed("click"))
+				if (bank.CanSpendGold(turretManager.TurrentCost))
 				{
-					Vector3 collisionPoint = rayCast.GetCollisionPoint();
-					Vector3I mapPosition =  gridMap.LocalToMap(collisionPoint);
-					if(gridMap.GetCellItem(mapPosition) == 0)
+					Input.SetDefaultCursorShape(Input.CursorShape.PointingHand);
+
+					if (Input.IsActionJustPressed("click"))
 					{
-						gridMap.SetCellItem(mapPosition, 1);
-						turretManager.BuildTurret(gridMap.MapToLocal(mapPosition));
+						Vector3 collisionPoint = rayCast.GetCollisionPoint();
+						Vector3I mapPosition = gridMap.LocalToMap(collisionPoint);
+						if (gridMap.GetCellItem(mapPosition) == 0)
+						{
+							gridMap.SetCellItem(mapPosition, 1);
+							turretManager.BuildTurret(gridMap.MapToLocal(mapPosition));
+							bank.SpendGold(turretManager.TurrentCost);
+						}
 					}
 				}
-			}
+                else
+                {
+                    Input.SetDefaultCursorShape(Input.CursorShape.Arrow);
+                }
+            }
 			else
 			{
                 Input.SetDefaultCursorShape(Input.CursorShape.Arrow);
